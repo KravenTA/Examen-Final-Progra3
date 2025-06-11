@@ -54,7 +54,7 @@ public class BookResource {
 	@GET
 	@Path("mayorAId/{id}")
 	public Response traerMayor(@PathParam("id") Long id) {
-		var book = repo.find("numpages > ?1", id).list();
+		var book = repo.find("numPages > ?1", id).list();
 		if(book != null) {
 			return Response.ok(book).build();
 		}else {
