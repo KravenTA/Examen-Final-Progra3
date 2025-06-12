@@ -12,8 +12,9 @@ public class Person {
 	private String name;
 
 	@Id
-	@SequenceGenerator(name = "PersonIdGenerator")
+	@SequenceGenerator(name = "PersonIdGenerator", sequenceName = "person_seq", allocationSize = 1)
 	@GeneratedValue(generator = "PersonIdGenerator")
+
 	public Long getId() {
 		return id;
 	}

@@ -18,15 +18,16 @@ public class TemperaturaService implements ITemperaturaService{
 	public void addTemperatura(Temperatura t) {
 		valores.add(t);
 	}
-	
+
 	@Override
 	public List<Temperatura> obtenerTemperaturas() {
 		return Collections.unmodifiableList(valores);
 	}
-	
+
 	@Override
 	public int maxima() {
-		return valores.stream().mapToInt(Temperatura::getMaxima).max().getAsInt();
+		return valores.stream().mapToInt(Temperatura::getMaxima).max().orElseThrow(() ->
+				new IllegalStateException("No hay temperaturas registradas"));
 	}
 
 	@Override

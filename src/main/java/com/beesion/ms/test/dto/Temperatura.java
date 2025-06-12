@@ -5,9 +5,7 @@ import java.util.Objects;
 public class Temperatura {
 
 	private String ciudad;
-
 	private int minima;
-
 	private int maxima;
 
 	@Override
@@ -16,6 +14,7 @@ public class Temperatura {
 				+ hashCode() + "]";
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -27,6 +26,7 @@ public class Temperatura {
 		return Objects.equals(ciudad, other.ciudad) && maxima == other.maxima && minima == other.minima;
 	}
 
+	@Override
 	public int hashCode() {
 		return Objects.hash(ciudad, maxima, minima);
 	}
@@ -65,5 +65,4 @@ public class Temperatura {
 	public void setMaxima(int maxima) {
 		this.maxima = maxima;
 	}
-
 }

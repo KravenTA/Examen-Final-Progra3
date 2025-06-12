@@ -8,6 +8,8 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 @ApplicationScoped
 public class PersonRepo implements IPersonRepo {
 
@@ -20,4 +22,8 @@ public class PersonRepo implements IPersonRepo {
 		em.persist(per);
 	}
 
+	@Override
+	public List<Person> findAll() {
+		return em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
+	}
 }

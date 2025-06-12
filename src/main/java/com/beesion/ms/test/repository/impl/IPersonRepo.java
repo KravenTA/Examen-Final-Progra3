@@ -2,8 +2,9 @@ package com.beesion.ms.test.repository.impl;
 
 import com.beesion.ms.model.Person;
 
-public interface IPersonRepo {
-	
-	public void save(Person per);
+import java.util.List;
 
+public interface IPersonRepo {
+	void save(Person per);
+	List<Person> findAll();
 }

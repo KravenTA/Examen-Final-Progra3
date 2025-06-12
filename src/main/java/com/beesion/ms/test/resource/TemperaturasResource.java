@@ -3,7 +3,7 @@ package com.beesion.ms.test.resource;
 import java.util.List;
 
 import com.beesion.ms.test.dto.Temperatura;
-import com.beesion.ms.test.service.impl.TemperaturaService;
+import com.beesion.ms.test.service.ITemperaturaService;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -15,9 +15,9 @@ import jakarta.ws.rs.core.Response;
 
 @Path("/temperaturas")
 public class TemperaturasResource {
-	
+
 	@Inject
-	private TemperaturaService temperaturas;
+	private ITemperaturaService temperaturas;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -38,16 +38,14 @@ public class TemperaturasResource {
 		temperaturas.addTemperatura(temp);
 		return temp;
 	}
-	
+
 	@GET
 	@Path("/maxima")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response maxima() {
-		if(temperaturas.isEmpty())
+		if (temperaturas.isEmpty())
 			return Response.status(400).entity("No hay temperaturas").build();
 		int tempetaturaMaxima = temperaturas.maxima();
-		return Response.ok(Integer.toString(tempetaturaMaxima)).build();			
+		return Response.ok(Integer.toString(tempetaturaMaxima)).build();
 	}
-	
-
 }
