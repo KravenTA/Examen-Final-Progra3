@@ -1,5 +1,6 @@
 package com.beesion.ms.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,6 +17,7 @@ public class Address {
     private String country;
 
     @ManyToOne
+    @JsonIgnore
     private Person person;
 
     public Long getId() {
