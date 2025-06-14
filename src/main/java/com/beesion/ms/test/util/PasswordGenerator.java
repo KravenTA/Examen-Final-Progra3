@@ -9,18 +9,14 @@ public class PasswordGenerator {
     private static final SecureRandom random = new SecureRandom();
 
     public static String generate(PolicyDomainDto policy) {
+        // Validación delegada a PolicyValidator
         PolicyValidator.validate(policy);
+
         StringBuilder password = new StringBuilder(policy.getMinLength());
         String allowedChars = buildAllowedChars(policy, password);
         fillRemainingChars(policy, password, allowedChars);
         shufflePassword(password);
         return password.toString();
-    }
-
-    private static void validatePolicy(PolicyDomainDto policy) {
-        if (policy.getMinLength() < 4) {
-            throw new IllegalArgumentException("La longitud de la contraseña debe ser al menos 4 caracteres.");
-        }
     }
 
     private static String buildAllowedChars(PolicyDomainDto policy, StringBuilder password) {

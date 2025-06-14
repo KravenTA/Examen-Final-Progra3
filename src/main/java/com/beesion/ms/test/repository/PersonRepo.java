@@ -26,4 +26,9 @@ public class PersonRepo implements IPersonRepo {
 	public List<Person> findAll() {
 		return em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
 	}
+
+	@Override
+	public Person findById(Long id) { // Implementación del método
+		return em.find(Person.class, id);
+	}
 }

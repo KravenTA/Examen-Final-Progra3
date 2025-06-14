@@ -3,17 +3,19 @@ package com.beesion.ms.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Person {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String name;
 
-	@Id
-	@SequenceGenerator(name = "PersonIdGenerator", sequenceName = "person_seq", allocationSize = 1)
-	@GeneratedValue(generator = "PersonIdGenerator")
+	@OneToMany(mappedBy = "person")
+	private List<Address> addresses;
 
 	public Long getId() {
 		return id;
@@ -31,4 +33,11 @@ public class Person {
 		this.name = name;
 	}
 
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
 }
